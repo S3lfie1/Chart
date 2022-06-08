@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+
+    <style>
+        body {
+            background-color: #061528;
+        }
+
+        #chart {
+            background-image: linear-gradient(to top, #061528 0%, #0c4a7c 100%);
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="chart"></canvas>
+
+    <script src="chart.js"></script>
+    <script>
+
+        function generateData(count) {
+            var data = [];
+            for (var i = 0; i < count; i++) {
+                data.push({ x: i, y: Math.floor(Math.random() * 200) - 100 });
+            }
+            return data;
+        }
+
+        chart({
+            selector: "#chart",
+            // format: { x: 0, y: 0 }
+            data: generateData(30),
+            styles: {
+                text: {
+                    color: "#fff",
+                    font: "Arial",
+                    size: 10,
+                    rotate: 0,
+                    format: (x, y) => {
+                        return '(' + x + ',' + y + ')'
+                    }
+                },
+                dot: {
+                    color: "#24b5ff",
+                    stroke: false,
+                    radius: 3,
+                    shadowColor: 'black',
+                },
+                line: {
+                    color: "#fff",
+                    shadowColor: '#0088ff'
+                },
+                axis: {
+                    color: "#fff",
+                    width: 0.4,
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
