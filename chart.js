@@ -20,9 +20,9 @@ function chart({ selector, data, styles }) {
         })
 
     function draw() {
-        const minY = data.reduce((a, b) => a.y < b.y ? a : b).y - 10;
-        const maxX = data.reduce((a, b) => a.x > b.x ? a : b).x + (data.length * 0.04);
-        const maxY = data.reduce((a, b) => a.y > b.y ? a : b).y - minY + 20;
+        const minY = Math.min(...data.map((d) => d.y)) - 10;
+        const maxX = Math.max(...data.map((d) => d.x)) + dataObj.length * 0.04;
+        const maxY = Math.max(...data.map((d) => d.y)) - minY + 20;
 
         ctx.scale(1, -1)
 
@@ -76,8 +76,6 @@ function chart({ selector, data, styles }) {
         }
 
         function drawAxisX(pointY) {
-            ctx.save();
-
             ctx.beginPath();
             ctx.lineTo(percX(0), percY(pointY));
             ctx.lineTo(percX(maxX), percY(pointY));
@@ -86,7 +84,7 @@ function chart({ selector, data, styles }) {
 
             ctx.stroke();
 
-            ctx.restore();
+            ctx.closePath();
         }
 
         function drawDot(position, radius) {
@@ -102,7 +100,7 @@ function chart({ selector, data, styles }) {
             if (styles.dot?.stroke)
                 ctx.stroke();
 
-            ctx.restore();
+            ctx.closePath();
         }
 
         function percX(x) {
