@@ -21,7 +21,7 @@ function chart({ selector, data, styles }) {
 
     function draw() {
         const minY = Math.min(...data.map((d) => d.y)) - 10;
-        const maxX = Math.max(...data.map((d) => d.x)) + dataObj.length * 0.04;
+        const maxX = Math.max(...data.map((d) => d.x)) + data.length * 0.04;
         const maxY = Math.max(...data.map((d) => d.y)) - minY + 20;
 
         ctx.scale(1, -1)
