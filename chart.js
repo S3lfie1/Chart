@@ -11,7 +11,6 @@ function chart({ selector, data, styles }) {
             ctx.save();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-            canvas.height = canvas.parentElement.clientHeight;
             canvas.width = canvas.parentElement.clientWidth;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
